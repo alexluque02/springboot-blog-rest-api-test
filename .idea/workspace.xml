@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="80fec2b0-20e1-42ee-adc2-ba8c7e5cc474" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerWOSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerWOSecurityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/service/PostServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/service/PostServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "deletecomment",
+    "git-widget-placeholder": "deletepostbyid",
     "last_opened_file_path": "C:/Users/alexl/Desktop/springboot-blog-rest-api-test",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -66,7 +66,7 @@
       <recent name="com.springboot.blog.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CommentControllerWOSecurityTest.deleteComment_ValidComment_ReturnsNotFound">
+  <component name="RunManager" selected="JUnit.PostServiceTest">
     <configuration name="CommentControllerWOSecurityTest.deleteComment_ValidComment_ReturnsNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
@@ -99,7 +99,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
         <pattern>
@@ -108,13 +108,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.springboot.blog.service" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.service.CommentServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.service.PostServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommentServiceTest.deleteComment_CommentDoesNotBelongToPost_ThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostServiceTest.deletePostById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
         <pattern>
@@ -123,14 +123,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.springboot.blog.service" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.service.CommentServiceTest" />
-      <option name="METHOD_NAME" value="deleteComment_CommentDoesNotBelongToPost_ThrowException" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.service.PostServiceTest" />
+      <option name="METHOD_NAME" value="deletePostById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommentServiceTest.deleteComment_ValidComment_DeletesComment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostServiceTest.deletePostById_ThrowsResourcesNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
         <pattern>
@@ -139,8 +139,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.springboot.blog.service" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.service.CommentServiceTest" />
-      <option name="METHOD_NAME" value="deleteComment_ValidComment_DeletesComment" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.service.PostServiceTest" />
+      <option name="METHOD_NAME" value="deletePostById_ThrowsResourcesNotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,11 +148,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PostServiceTest" />
+        <item itemvalue="JUnit.PostServiceTest.deletePostById_ThrowsResourcesNotFound" />
+        <item itemvalue="JUnit.PostServiceTest.deletePostById" />
         <item itemvalue="JUnit.CommentControllerWOSecurityTest.deleteComment_ValidComment_ReturnsNotFound" />
         <item itemvalue="JUnit.CommentControllerWOSecurityTest.deleteComment_ValidComment_ReturnsOk" />
-        <item itemvalue="JUnit.CommentServiceTest" />
-        <item itemvalue="JUnit.CommentServiceTest.deleteComment_ValidComment_DeletesComment" />
-        <item itemvalue="JUnit.CommentServiceTest.deleteComment_CommentDoesNotBelongToPost_ThrowException" />
       </list>
     </recent_temporary>
   </component>
@@ -212,6 +212,9 @@
     </SUITE>
     <SUITE FILE_PATH="coverage/springboot_blog_rest_api_test$SpringbootBlogRestApiApplicationTests.ic" NAME="SpringbootBlogRestApiApplicationTests Coverage Results" MODIFIED="1706790868690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.springboot.blog.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot_blog_rest_api_test$PostServiceTest_deletePostById.ic" NAME="PostServiceTest.deletePostById Coverage Results" MODIFIED="1707219923273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.springboot.blog.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/springboot_blog_rest_api_test$CommentServiceTest_getCommentsByPostId.ic" NAME="CommentServiceTest.getCommentsByPostId Coverage Results" MODIFIED="1707153536733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.springboot.blog.service.*</FILTER>
