@@ -92,6 +92,21 @@ public class PostControllerWSecurityTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    @WithMockUser(roles = {"USER"})
+    void deletePostById_thenReturnHttp401() throws Exception {
+        // Given
+        Long idPost = 1L;
+        mockMvc = MockMvcBuilders.standaloneSetup(postController).build();
+
+        // When and Then
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/posts/{id}", idPost)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnauthorized());
+
+        verify(postService, never()).deletePostById(idPost);
+    }
 
 
 
