@@ -35,3 +35,10 @@ Udemy Course Link - [Building Real-Time REST APIs with Spring Boot - Blog App](h
 - Learn Docker
 - Learn Spring and Spring Boot Annotations
 - Interview QA
+
+# Cambios introducidos por Luismi
+
+- Se ha portado el script de sql de Mysql a Postgresql
+- Se han adaptado las entidades para que estén en consonancia con el DDL anterior.
+- Se ha creado un nuevo perfil para Postgresql.
+- Se ha cambiado el valor de `ddl-auto=validate` para que Hibernate no genere el modelo, sino que lo valide con lo que encuentre en la base de datos.

@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
+
 public class AuthServiceImpl implements AuthService {
 
     private AuthenticationManager authenticationManager;
