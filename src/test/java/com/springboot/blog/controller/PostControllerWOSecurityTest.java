@@ -84,6 +84,8 @@ class PostControllerWOSecurityTest {
 
     }
 
+    //Fernando
+
     @Test
     void getPostByIdWithStatusCode200_OK() throws Exception{
         ModelMapper modelMapper = new ModelMapper();
@@ -98,6 +100,8 @@ class PostControllerWOSecurityTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/posts/{id}", postDto.getId()))
                 .andExpect(status().isOk());
     }
+
+    //Fernando
 
     @Test
     void getPostByIdWithIdNullOrNotExistsThrowException() throws Exception {
