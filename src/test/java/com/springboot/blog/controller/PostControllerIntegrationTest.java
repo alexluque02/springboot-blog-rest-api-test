@@ -99,6 +99,29 @@ public class PostControllerIntegrationTest {
         assertEquals(404, response.getStatusCode().value());
     }
 
+    // Fernando
+    @Test
+    public void getPostByIdWithStatusCode200_OK(){
+        long postID = 1L;
+
+        ResponseEntity<PostDto> expectedResponse = testRestTemplate.getForEntity(
+                "http://localhost:"+port+"/api/posts/"+postID, PostDto.class);
+
+        assertEquals(HttpStatus.OK, expectedResponse.getStatusCode());
+
+    }
+
+    //Fernando
+    @Test
+    public void getPostByIdWithIncorrectIdOrNullReturnStatusCode404_NotFound(){
+        long postId = 5234L;
+
+        ResponseEntity<PostDto> expectedResponse = testRestTemplate.getForEntity(
+                "http://localhost:"+port+"/api/posts/"+postId, PostDto.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, expectedResponse.getStatusCode());
+    }
+
     //Luque
     @Test
     public void deletePost_AdminRoleReturnsOk(){

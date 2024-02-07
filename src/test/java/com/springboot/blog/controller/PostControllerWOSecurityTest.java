@@ -84,6 +84,8 @@ class PostControllerWOSecurityTest {
 
     }
 
+    //Fernando
+
     @Test
     void getAllPosts_NoResults() throws Exception {
         int pageNo = 0;
@@ -120,6 +122,8 @@ class PostControllerWOSecurityTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/posts/{id}", postDto.getId()))
                 .andExpect(status().isOk());
     }
+
+    //Fernando
 
     @Test
     void getPostByIdWithIdNullOrNotExistsThrowException() throws Exception {
