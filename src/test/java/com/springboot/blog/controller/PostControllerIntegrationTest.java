@@ -1,8 +1,10 @@
 package com.springboot.blog.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.blog.entity.Post;
 import com.springboot.blog.payload.CommentDto;
 import com.springboot.blog.payload.LoginDto;
+import com.springboot.blog.payload.PostDto;
 import com.springboot.blog.payload.PostResponse;
 import com.springboot.blog.security.JwtTokenProvider;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,9 +15,11 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.parameters.P;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.util.LinkedMultiValueMap;
@@ -69,9 +73,13 @@ public class PostControllerIntegrationTest {
 
     @Test
     public void getPostByIdWith200_OKResponse(){
+
         long postId = 1L;
+        ResponseEntity<PostDto> expectedResponse = testRestTemplate.getForEntity(
+                "http://localhost:"+port+"/api/posts/"+postId, PostDto.class);
 
-
+        assertEquals(HttpStatus.OK, expectedResponse.getStatusCode());
+        assertEquals(postId, expectedResponse.getBody().getId());
     }
 
     @Test

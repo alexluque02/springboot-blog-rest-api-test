@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80fec2b0-20e1-42ee-adc2-ba8c7e5cc474" name="Changes" comment="Cambios locos de Luismi">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_02_2024_23_15__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_02_2024_23_15__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/springboot/blog/controller/CommentControllerWSecurityTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/springboot/blog/controller/CommentControllerWSecurityTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +63,7 @@
     "JUnit.CommentServiceTest.getCommentByIdWithAnInvalidCommentIdThrowException.executor": "Run",
     "JUnit.CommentServiceTest.getCommentByIdWithEmptyContentThrowException.executor": "Run",
     "JUnit.CommentServiceTest.getCommentByIdWithSuccess.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.getPostByIdWith200_OKResponse.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -78,22 +78,7 @@
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CommentControllerIntegrationTest.getCommentByIdWith200_OKResponse">
-    <configuration name="CategoryControllerWOSecurityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-blog-rest-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.springboot.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerWOSecurityTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PostControllerIntegrationTest.getPostByIdWith200_OKResponse">
     <configuration name="CategoryControllerWSecurity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
@@ -156,13 +141,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PostControllerIntegrationTest.getPostByIdWith200_OKResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-blog-rest-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springboot.blog.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.PostControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="getPostByIdWith200_OKResponse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PostControllerIntegrationTest.getPostByIdWith200_OKResponse" />
         <item itemvalue="JUnit.CommentControllerIntegrationTest.getCommentByIdWith200_OKResponse" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest.updateCategory" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest" />
         <item itemvalue="JUnit.CategoryControllerWSecurity" />
-        <item itemvalue="JUnit.CategoryControllerWOSecurityTest" />
       </list>
     </recent_temporary>
   </component>
