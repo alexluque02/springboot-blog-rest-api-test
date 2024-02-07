@@ -43,6 +43,7 @@ class PostServiceTest {
     void createPost() {
     }
 
+    //Luque
     @Test
     void getAllPosts_OrderAsc() {
         int pageNo = 0;
@@ -86,6 +87,7 @@ class PostServiceTest {
         assertEquals(2L, result.getContent().get(0).getId());
     }
 
+    //Luque
     @Test
     void getAllPosts_OrderDesc() {
         int pageNo = 0;
@@ -212,6 +214,7 @@ class PostServiceTest {
 
     }
 
+    //Luque
     @Test
     void getPostsByCategory_CategoryNotFound() {
         Long categoryId = 1L;
@@ -219,6 +222,7 @@ class PostServiceTest {
         assertThrows(ResourceNotFoundException.class, () -> postService.getPostsByCategory(categoryId));
     }
 
+    //Luque
     @Test
     void getPostsByCategory_ReturnsEmptyPostsList(){
         Category category = new Category();
@@ -231,6 +235,7 @@ class PostServiceTest {
         assertTrue(result.isEmpty());
     }
 
+    //Luque
     @Test
     void getPostsByCategory_ReturnsPostsList(){
         Category category = new Category();

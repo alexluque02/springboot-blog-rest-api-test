@@ -85,6 +85,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(commentId, responseEntity.getBody().getId());
     }
 
+    //Luque
     @Test
     void updateComment_thenReturnOk(){
         long postId = 1;
@@ -105,6 +106,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(commentId ,response.getBody().getId());
     }
 
+    //Luque
     @Test
     void updateComment_thenReturnPostIdNotFound(){
         long postId = 71;
@@ -122,6 +124,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_thenReturnCategoryIdNotFound(){
         long postId = 71;
@@ -139,6 +142,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_PostsIdDontMatch(){
         long postId = 1;
@@ -156,6 +160,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_DtoIsWrong(){
         long postId = 1;
@@ -169,6 +174,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_NoDto(){
         long postId = 1;

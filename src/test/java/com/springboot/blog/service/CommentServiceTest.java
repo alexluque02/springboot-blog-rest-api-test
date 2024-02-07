@@ -153,6 +153,7 @@ class CommentServiceTest {
         assertThrows(Exception.class, () -> commentService.getCommentById(postId, commentId));
     }
 
+    //Luque
     @Test
     void updateComment_PostNotFound() {
         Long postId = 1L;
@@ -165,6 +166,7 @@ class CommentServiceTest {
                 () -> commentService.updateComment(postId, commentId, commentRequest));
     }
 
+    //Luque
     @Test
     void updateComment_CommentNotFound(){
         Post post = new Post();
@@ -178,6 +180,7 @@ class CommentServiceTest {
         assertThrows(ResourceNotFoundException.class, () -> commentService.updateComment(post.getId(), commentId, commentRequest));
     }
 
+    //Luque
     @Test
     void updateComment_CommentPostIdDifferent(){
         Post post = new Post();
@@ -195,6 +198,7 @@ class CommentServiceTest {
         assertThrows(BlogAPIException.class, () -> commentService.updateComment(post2.getId(), comment.getId(), commentRequest));
     }
 
+    //Luque
     @Test
     void updateComment_Successful(){
         Long postId = 1L;

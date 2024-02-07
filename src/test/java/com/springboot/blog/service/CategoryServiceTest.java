@@ -81,6 +81,7 @@ class CategoryServiceTest {
         assertEquals(category.getId(), result.getId());
     }
 
+    //Luque
     @Test
     void getAllCategories_ReturnsAllCategories() {
         List<Category> categories = List.of(new Category(), new Category());

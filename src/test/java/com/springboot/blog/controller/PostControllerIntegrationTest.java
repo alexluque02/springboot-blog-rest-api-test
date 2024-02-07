@@ -56,6 +56,7 @@ public class PostControllerIntegrationTest {
         testRestTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
     }
 
+    //Luque
     @Test
     public void getAllPosts_ReturnsOk(){
         ResponseEntity<PostResponse> response = testRestTemplate.getForEntity("http://localhost:"+port+"/api/posts", PostResponse.class);
@@ -63,7 +64,7 @@ public class PostControllerIntegrationTest {
         assertEquals(11, Objects.requireNonNull(response.getBody()).getTotalElements());
         assertEquals(1, response.getBody().getContent().get(0).getId());
     }
-
+    //Luque
     @Test
     @Sql("classpath:delete-data.sql")
     public void getAllPosts_ReturnsOkWOResults(){
@@ -72,6 +73,7 @@ public class PostControllerIntegrationTest {
         assertEquals(0, Objects.requireNonNull(response.getBody()).getTotalElements());
     }
 
+    //Luque
     @Test
     public void getPostByCategory_ReturnsOk(){
         long categoryId = 3;
@@ -80,6 +82,7 @@ public class PostControllerIntegrationTest {
         assertEquals(4, Objects.requireNonNull(response.getBody()).length);
     }
 
+    //Luque
     @Test
     public void getPostByCategory_ReturnsNoPosts(){
         long categoryId = 4;
@@ -88,6 +91,7 @@ public class PostControllerIntegrationTest {
         assertEquals(0, Objects.requireNonNull(response.getBody()).length);
     }
 
+    //Luque
     @Test
     public void getPostByCategory_ReturnsCategoryNotFound(){
         long categoryId = 7;
@@ -95,6 +99,7 @@ public class PostControllerIntegrationTest {
         assertEquals(404, response.getStatusCode().value());
     }
 
+    //Luque
     @Test
     public void deletePost_AdminRoleReturnsOk(){
         LoginDto loginDto = new LoginDto("amatushevich4@nifty.com", "zE5#8$x7\"mk>");
@@ -108,6 +113,7 @@ public class PostControllerIntegrationTest {
         assertEquals(200, response.getStatusCode().value());
     }
 
+    //Luque
     @Test
     public void deletePost_UserRoleReturns401(){
         LoginDto loginDto = new LoginDto("sbrane1", "aH5_V1Oar1");
@@ -121,12 +127,14 @@ public class PostControllerIntegrationTest {
         assertEquals(401, response.getStatusCode().value());
     }
 
+    //Luque
     @Test
     public void deletePost_AnonymousUserReturns401(){
         ResponseEntity<String> response = testRestTemplate.exchange("http://localhost:"+port+"/api/posts/"+1, HttpMethod.DELETE,new HttpEntity<>("Post entity deleted successfully.", headers), String.class);
         assertEquals(401, response.getStatusCode().value());
     }
 
+    //Luque
     @Test
     public void deletePost_ReturnsNotFound(){
         LoginDto loginDto = new LoginDto("amatushevich4@nifty.com", "zE5#8$x7\"mk>");
