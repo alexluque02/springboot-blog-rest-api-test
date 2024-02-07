@@ -3,6 +3,7 @@ package com.springboot.blog.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.blog.entity.Role;
 import com.springboot.blog.entity.User;
+import com.springboot.blog.payload.CategoryDto;
 import com.springboot.blog.payload.CommentDto;
 import com.springboot.blog.payload.LoginDto;
 import com.springboot.blog.security.JwtTokenProvider;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,7 +57,7 @@ public class CommentControllerIntegrationTest {
     @BeforeEach
     public void setup() {
         testRestTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-        LoginDto loginDto = new LoginDto("tpetteford0@linkedin.com", "uN1~{O)+''}");
+        LoginDto loginDto = new LoginDto("tpetteford0@linkedin.com", "$2a$12$V2STGXRVuoOEqKtAtKZJ3ePwcVAb/GZ7y4NTKhrlZ1MJy6AWiLyXe");
         String userToken = jwtTokenProvider.generateToken(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
         System.out.println(userToken);
@@ -62,6 +66,79 @@ public class CommentControllerIntegrationTest {
         headers.add("Authorization","Bearer "+ userToken);
     }
 
+    // Roberto Rebolledo Naharro
+    @Test
+    void getCommentByPostId_thenReturnOk(){
+
+        long postId = 1L;
+        ResponseEntity<List<CommentDto>> response = testRestTemplate.exchange(
+                "/api/v1/posts/"+postId+"/comments",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<CommentDto>>() {}
+        );
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(response.getBody().get(0).getName(),"Lén");
+
+    }
+
+
+    //Fernando
+    @Test
+    void getCommentByIdWith200_OKResponse(){
+        long commentId = 1L;
+        long postId = 1L;
+
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(commentId);
+
+        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/"+commentId;
+
+        ResponseEntity<CommentDto> expectedResponse = testRestTemplate.getForEntity(path, CommentDto.class);
+
+        assertEquals(HttpStatus.OK, expectedResponse.getStatusCode());
+        assertEquals(commentDto.getId(), expectedResponse.getBody().getId());
+
+    }
+
+    //Fernando
+    @Test
+    void getCommentByIdWithNonExistsCommentId404_NotFoundResponse(){
+        long commentId = 234L;
+        long postId = 1L;
+
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(commentId);
+
+        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/"+commentId;
+
+        ResponseEntity<CommentDto> expectedResponse = testRestTemplate.getForEntity(path, CommentDto.class);
+    }
+
+    @Test
+    void createComment_thenReturnCreated(){
+        long postId = 1L;
+        long commentId = 1L;
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(1L);
+        commentDto.setName("Paco");
+        commentDto.setEmail("paco@gmail.com");
+        commentDto.setBody("Lorem ipsum dolor sit amet");
+
+        String path = "http://localhost:" + port + "/api/v1/posts/" + postId + "/comments";
+
+        ResponseEntity<CommentDto> responseEntity = testRestTemplate.exchange(
+                path, HttpMethod.POST, new HttpEntity<>(commentDto, headers), CommentDto.class
+        );
+
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertNotNull(responseEntity.getBody());
+        assertEquals("Paco", responseEntity.getBody().getName());
+        assertEquals(commentId, responseEntity.getBody().getId());
+    }
+
+    //Luque
     @Test
     void updateComment_thenReturnOk(){
         long postId = 1;
@@ -82,6 +159,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(commentId ,response.getBody().getId());
     }
 
+    //Luque
     @Test
     void updateComment_thenReturnPostIdNotFound(){
         long postId = 71;
@@ -99,6 +177,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_thenReturnCategoryIdNotFound(){
         long postId = 71;
@@ -116,6 +195,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_PostsIdDontMatch(){
         long postId = 1;
@@ -133,6 +213,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_DtoIsWrong(){
         long postId = 1;
@@ -146,6 +227,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_NoDto(){
         long postId = 1;
@@ -158,4 +240,56 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(0, response.getBody().getId());
     }
+
+    //Roberto Rebolledo Naharro
+    @Test
+    void deleteComment_Ok(){
+        long postId = 1;
+        long commentId = 1;
+
+
+
+        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/"+commentId;
+
+        ResponseEntity<String> response = testRestTemplate.exchange(
+                path,HttpMethod.DELETE,new HttpEntity<>(null, headers),String.class);
+
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals("Comment deleted successfully",response.getBody());
+
+
+    }
+
+    //Roberto Rebolledo Naharro
+    @Test
+    void deleteComment_NotFound(){
+        long postId = 10000;
+        long commentId = 1000;
+
+
+
+        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/"+commentId;
+
+        ResponseEntity<String> response = testRestTemplate.exchange(
+                path,HttpMethod.DELETE,new HttpEntity<>(null, headers),String.class);
+
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    //Roberto Rebolledo Naharro
+    @Test
+    void deleteComment_BadRequest(){
+        long postId = 5;
+        long commentId = 1;
+
+
+
+        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/"+commentId;
+
+        ResponseEntity<String> response = testRestTemplate.exchange(
+                path,HttpMethod.DELETE,new HttpEntity<>(null, headers),String.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+    }
+
 }

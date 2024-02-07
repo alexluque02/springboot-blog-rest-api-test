@@ -51,8 +51,9 @@ class PostControllerWOSecurityTest {
     void createPost() {
     }
 
+    //Luque
     @Test
-    void getAllPosts() throws Exception {
+    void getAllPosts_WithResults() throws Exception {
         int pageNo = 0;
         int pageSize = 10;
         String sortBy = "title";
@@ -83,6 +84,30 @@ class PostControllerWOSecurityTest {
 
     }
 
+    //Fernando
+
+    @Test
+    void getAllPosts_NoResults() throws Exception {
+        int pageNo = 0;
+        int pageSize = 10;
+        String sortBy = "title";
+        String sortDir = "ASC";
+
+        List<PostDto> postDto = List.of();
+        PostResponse postResponse = new PostResponse(postDto, 0 , 1, 2, 1, true);
+        Mockito.when(postService.getAllPosts(pageNo, pageSize, sortBy, sortDir)).thenReturn(postResponse);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/posts")
+                        .param("pageNo", String.valueOf(pageNo))
+                        .param("pageSize", String.valueOf(pageSize))
+                        .param("sortBy", sortBy)
+                        .param("sortDir", sortDir)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content", hasSize(0)));
+
+    }
+
     @Test
     void getPostByIdWithStatusCode200_OK() throws Exception{
         ModelMapper modelMapper = new ModelMapper();
@@ -98,6 +123,8 @@ class PostControllerWOSecurityTest {
                 .andExpect(status().isOk());
     }
 
+    //Fernando
+
     @Test
     void getPostByIdWithIdNullOrNotExistsThrowException() throws Exception {
         long postId = 2L;
@@ -108,14 +135,8 @@ class PostControllerWOSecurityTest {
                 .andExpect(status().isNotFound());
     }
 
-    @Test
-    void updatePost() {
-    }
 
-    @Test
-    void deletePost() {
-    }
-
+    //Luque
     @Test
     void getPostsByCategory_Response200() throws Exception {
         Category category = new Category();
@@ -154,6 +175,7 @@ class PostControllerWOSecurityTest {
                 .andExpect(jsonPath("$[0].id", is(1)));
     }
 
+    //Luque
     @Test
     void getPostsByCategory_CategoryNotFound() throws Exception {
         Post post1 = new Post();

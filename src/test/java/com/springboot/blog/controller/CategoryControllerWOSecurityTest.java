@@ -67,9 +67,9 @@ class CategoryControllerWOSecurityTest {
                 .andExpect(status().isOk());
     }
 
-
+    //Luque
     @Test
-    void getCategories() throws Exception {
+    void getCategories_WithResults() throws Exception {
         CategoryDto categoryDto = new CategoryDto(1L, "Ropa", "Esto es una buena categoria");
         List <CategoryDto> categories = List.of(
                 categoryDto
@@ -82,6 +82,18 @@ class CategoryControllerWOSecurityTest {
                 .andExpect(jsonPath("$",hasSize(1)))
                 .andExpect(content().json(objectMapper.writeValueAsString(categories)));
     }
+
+    @Test
+    void getCategories_NoResults() throws Exception {
+        Mockito.when(categoryService.getAllCategories()).thenReturn(List.of());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$",hasSize(0)));
+    }
+
+
 
     @Test
     void updateCategory() {

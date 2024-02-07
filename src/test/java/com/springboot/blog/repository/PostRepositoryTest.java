@@ -13,6 +13,7 @@ class PostRepositoryTest extends ConfigTestClass {
     @Autowired
     private PostRepository postRepository;
 
+    // Roberto Rebolledo Naharro
     @Test
     void findByCategoryId() {
 

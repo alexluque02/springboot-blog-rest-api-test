@@ -23,6 +23,7 @@ class UserRepositoryTest extends ConfigTestClass {
         assertTrue(userOptional.isEmpty());
     }
 
+    //Luque
     @Test
     void findByUsernameOrEmail_UsernameExists() {
         Optional<User> user = userRepository.findByUsernameOrEmail("sbrane1", "");
@@ -30,7 +31,7 @@ class UserRepositoryTest extends ConfigTestClass {
         assertEquals("Silva", user.get().getName());
         assertEquals(2L, user.get().getId());
     }
-
+    //Luque
     @Test
     void findByUsernameOrEmail_EmailExists() {
         Optional<User> user = userRepository.findByUsernameOrEmail("", "tpetteford0@linkedin.com");
@@ -38,14 +39,14 @@ class UserRepositoryTest extends ConfigTestClass {
         assertEquals("Tomi", user.get().getName());
         assertEquals(1L, user.get().getId());
     }
-
+    //Luque
     @Test
     void findByUsernameOrEmail_TwoResults() {
         assertThrows(IncorrectResultSizeDataAccessException.class, () -> {
             userRepository.findByUsernameOrEmail("sbrane1", "tpetteford0@linkedin.com");
         });
     }
-
+    //Luque
     @Test
     void findByUsernameOrEmail_BothExist() {
         Optional<User> user = userRepository.findByUsernameOrEmail("jjosuweit2", "jdelisle2@mysql.com");
@@ -53,18 +54,27 @@ class UserRepositoryTest extends ConfigTestClass {
         assertEquals("Janene", user.get().getName());
         assertEquals(3L, user.get().getId());
     }
-
+    //Luque
     @Test
     void findByUsernameOrEmail_BothDontExist() {
         Optional<User> user = userRepository.findByUsernameOrEmail("pepito", "pepito@gmail.com");
         assertFalse(user.isPresent());
     }
 
+    // Roberto Rebolledo Naharro
     @Test
     void findByUsername() {
         Optional<User> user = userRepository.findByUsername("tvenneur0");
         Assertions.assertNotNull(user);
         Assertions.assertEquals(user.get().getUsername(), "tvenneur0");
+
+    }
+
+    //Roberto Rebolledo Naharro
+    @Test
+    void findByUsername_NotFound(){
+        Optional<User> user = userRepository.findByUsername("Cristiano_Ronaldo");
+        assertFalse(user.isPresent());
 
     }
 

@@ -39,7 +39,9 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -57,6 +59,7 @@ class CommentControllerWSecurityTest {
 
     @BeforeEach
     public void setup() {
+
     }
 
 
@@ -79,6 +82,8 @@ class CommentControllerWSecurityTest {
                         .content(objectMapper.writeValueAsString(commentDto)))
                 .andExpect(status().isCreated());
     }
+
+    //Roberto Rebolledo Naharro
 
     @Test
     @WithMockUser(username = "username", roles = {"USER","ADMIN"})
@@ -143,13 +148,13 @@ class CommentControllerWSecurityTest {
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void getCommentByIdWithValidCommentAndEmptyPostWithStatusCode404NotFound() throws Exception {
-        Long postId = null;
+        Long postId = 277L;
         Long commentId = 1L;
         CommentDto commentDto = new CommentDto();
         commentDto.setId(commentId);
         commentDto.setBody("Comment");
 
-        Mockito.when(commentService.getCommentById(postId, commentId)).thenReturn(commentDto);
+        Mockito.when(commentService.getCommentById(postId, commentId)).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/posts/{postId}/comments/{id}", postId, commentId))
                 .andExpect(status().isNotFound());
@@ -167,10 +172,10 @@ class CommentControllerWSecurityTest {
                 .andExpect(status().isNotFound());
     }
 
-
+    //Luque
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
-    void updateComment_Succesful() throws Exception {
+    void updateComment_Successful() throws Exception {
         Long postId = 1L;
         long commentId = 1L;
         CommentDto updatedComment = new CommentDto();
@@ -180,7 +185,6 @@ class CommentControllerWSecurityTest {
         updatedComment.setBody("Un comentario guapo");
 
         Mockito.when(commentService.updateComment(postId, commentId, updatedComment)).thenReturn(updatedComment);
-
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/posts/{postId}/comments/{id}", postId, commentId)
                     .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedComment)))
@@ -188,6 +192,7 @@ class CommentControllerWSecurityTest {
                 .andExpect(jsonPath("$.name", is(updatedComment.getName())));
     }
 
+    //Luque
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void updateComment_PostIdOrCommentIdNotFound() throws Exception {

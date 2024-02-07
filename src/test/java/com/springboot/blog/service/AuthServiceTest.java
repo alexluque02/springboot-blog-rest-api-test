@@ -63,6 +63,7 @@ class AuthServiceTest {
     @Mock
     private JwtTokenProvider jwtTokenProvider;
 
+    //Luque
     @Test
     void login_ValidCredentials_ReturnToken() {
         LoginDto loginDto = new LoginDto("username", "password");
@@ -81,6 +82,7 @@ class AuthServiceTest {
         assertEquals(expectedToken, actualToken);
     }
 
+    //Luque
     @Test
     void login_InvalidCredentials_ThrowsException() {
         LoginDto loginDto = new LoginDto("invalidUsername", "invalidPassword");
@@ -91,6 +93,7 @@ class AuthServiceTest {
         assertThrows(AuthenticationServiceException.class, () -> authService.login(loginDto));
     }
 
+    //Luque
     @Test
     void register_usernameExistsEx() {
 
@@ -108,6 +111,7 @@ class AuthServiceTest {
         assertEquals("Username is already exists!.", exception.getMessage());
     }
 
+    //Luque
     @Test
     void register_emailExistsEx() {
 

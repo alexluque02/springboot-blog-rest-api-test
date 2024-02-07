@@ -48,6 +48,7 @@ public class CommentControllerWOSecurityTest {
     private WebApplicationContext webApplicationContext;
 
 
+    // Roberto Rebolledo Naharro
     @Test
     public void deleteComment_ValidComment_ReturnsOk() throws Exception {
         Long postId = 1L;
@@ -66,6 +67,7 @@ public class CommentControllerWOSecurityTest {
         verify(commentService, times(1)).deleteComment(postId, commentId);
     }
 
+    // Roberto Rebolledo Naharro
     @Test
     public void deleteComment_ValidComment_ReturnsNotFound() throws Exception {
         Long postId = 1L;

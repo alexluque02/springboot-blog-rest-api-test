@@ -44,7 +44,7 @@ class AuthControllerTest {
     @InjectMocks
     private AuthController authController;
 
-
+    //Luque
     @Test
     public void login_successful() throws Exception {
 
@@ -61,6 +61,7 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.accessToken").value("generated-token"));
     }
 
+    //Luque
     @Test
     public void login_badRequest() throws Exception {
 
@@ -73,6 +74,7 @@ class AuthControllerTest {
 
     }
 
+    //Luque
     @Test
     public void login_internalServerError() throws Exception {
 
