@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="80fec2b0-20e1-42ee-adc2-ba8c7e5cc474" name="Changes" comment="Cambios locos de Luismi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerWSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerWSecurityTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWOSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWOSecurityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/repository/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/repository/UserRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,11 +65,13 @@
     "JUnit.CommentServiceTest.getCommentByIdWithAnInvalidCommentIdThrowException.executor": "Run",
     "JUnit.CommentServiceTest.getCommentByIdWithEmptyContentThrowException.executor": "Run",
     "JUnit.CommentServiceTest.getCommentByIdWithSuccess.executor": "Run",
+    "JUnit.UserRepositoryTest.findByEmailNotFound.executor": "Run",
+    "JUnit.UserRepositoryTest.findByEmailOK.executor": "Run",
     "Maven.springboot-blog-rest-api [clean,install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "addCategoria",
+    "git-widget-placeholder": "testing-proyecto",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/alexl/Desktop/springboot-blog-rest-api-test"
   }
@@ -83,7 +83,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CategoryControllerWSecurityTest">
+  <component name="RunManager" selected="JUnit.UserRepositoryTest.findByEmailNotFound">
     <configuration name="CategoryControllerIntegrationTest.deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
@@ -95,22 +95,6 @@
       <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
       <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerIntegrationTest" />
       <option name="METHOD_NAME" value="deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CategoryControllerIntegrationTest.deleteCategoryWithStatusCode200_OK" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-blog-rest-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.springboot.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="deleteCategoryWithStatusCode200_OK" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,28 +131,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerWOSecurityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserRepositoryTest.findByEmailNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.springboot.blog.controller.*" />
+          <option name="PATTERN" value="com.springboot.blog.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.PostControllerWOSecurityTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.springboot.blog.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="findByEmailNotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRepositoryTest.findByEmailOK" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-blog-rest-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springboot.blog.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.springboot.blog.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="findByEmailOK" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserRepositoryTest.findByEmailNotFound" />
+        <item itemvalue="JUnit.UserRepositoryTest.findByEmailOK" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest.addCategoryWithResponse201Created" />
         <item itemvalue="JUnit.CategoryControllerIntegrationTest.deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound" />
-        <item itemvalue="JUnit.CategoryControllerIntegrationTest.deleteCategoryWithStatusCode200_OK" />
-        <item itemvalue="JUnit.PostControllerWOSecurityTest" />
       </list>
     </recent_temporary>
   </component>

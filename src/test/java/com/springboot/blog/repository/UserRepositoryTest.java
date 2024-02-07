@@ -16,11 +16,22 @@ class UserRepositoryTest extends ConfigTestClass {
     @Autowired
     UserRepository userRepository;
 
+    //Fernando
+    @Test
+    void findByEmailOK(){
+
+        Optional<User> userOptional = userRepository.findByEmail("tpetteford0@linkedin.com");
+
+        assertTrue(userOptional.isPresent());
+        assertEquals("Tomi", userOptional.get().getName());
+    }
+
+    // Fernando
     @Test
     void findByEmailNotFound() {
-        Optional<User> userOptional = userRepository.findByEmail("fakeEmail@gmail.com");
+        Optional<User> userOptional = userRepository.findByEmail("fake@fake.com");
 
-        assertTrue(userOptional.isEmpty());
+        assertFalse(userOptional.isPresent());
     }
 
     //Luque
@@ -81,6 +92,7 @@ class UserRepositoryTest extends ConfigTestClass {
         assertFalse(usuarioEncontrado);
     }
 
+    //Fernando
     @Test
     void existsByEmailFound() {
         boolean usuarioEncontrado = userRepository.existsByEmail("tpetteford0@linkedin.com");
@@ -88,6 +100,7 @@ class UserRepositoryTest extends ConfigTestClass {
         assertTrue(usuarioEncontrado);
     }
 
+    //Fernando
     @Test
     void existsByEmailNotFound() {
         boolean usuarioEncontrado = userRepository.existsByEmail("fakeEmail@gmail.com");
