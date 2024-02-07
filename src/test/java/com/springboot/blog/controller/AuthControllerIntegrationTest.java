@@ -40,7 +40,6 @@ public class AuthControllerIntegrationTest {
 
     @BeforeEach
     @Sql("classpath:delete-data.sql")
-    @Sql("classpath:insert-data.sql")
     public void setup() {
     }
 
@@ -82,8 +81,9 @@ public class AuthControllerIntegrationTest {
     }
 
 
-    //Roberto Rebolledo Naharro - Service Error line 80
+    //Roberto Rebolledo Naharro - Service Error line 83
     @Test
+    @Sql("classpath:insert-data.sql")
     public void authRegister_thenReturnCreated(){
 
         RegisterDto registerDto = new RegisterDto("Roberto","krobert153","robertorebolledo153@gmail.com","password123");
@@ -94,8 +94,9 @@ public class AuthControllerIntegrationTest {
 
     }
 
-    //Roberto Rebolledo Naharro - Service Error line 80
+    //Roberto Rebolledo Naharro
     @Test
+    @Sql("classpath:insert-data.sql")
     public void authRegister_thenReturnBadRequest(){
 
         RegisterDto registerDto = new RegisterDto("Roberto","krobert151","robertorebolledo151@gmail.com","password123");
