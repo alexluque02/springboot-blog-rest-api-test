@@ -1,9 +1,6 @@
 package com.springboot.blog.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.blog.entity.Role;
-import com.springboot.blog.entity.User;
-import com.springboot.blog.payload.CategoryDto;
 import com.springboot.blog.payload.CommentDto;
 import com.springboot.blog.payload.LoginDto;
 import com.springboot.blog.security.JwtTokenProvider;
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -65,19 +63,23 @@ public class CommentControllerIntegrationTest {
         headers.add("Authorization","Bearer "+ userToken);
     }
 
-
+    // Roberto Rebolledo Naharro
     @Test
-    void getCommentByPostId_thenResturnOk(){
-        long postId = 1;
+    void getCommentByPostId_thenReturnOk(){
 
-        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/";
+        long postId = 1L;
+        ResponseEntity<List<CommentDto>> response = testRestTemplate.exchange(
+                "/api/v1/posts/"+postId+"/comments",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<CommentDto>>() {}
+        );
 
-        ResponseEntity<CommentDto[]> response = testRestTemplate.getForEntity(path,CommentDto[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-
-
+        assertEquals(response.getBody().get(0).getName(),"Lén");
 
     }
+
 
     @Test
     void updateComment_thenReturnOk(){
