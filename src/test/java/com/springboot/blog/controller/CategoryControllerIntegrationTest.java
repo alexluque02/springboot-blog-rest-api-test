@@ -1,8 +1,11 @@
 package com.springboot.blog.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.blog.entity.Category;
 import com.springboot.blog.payload.CategoryDto;
+import com.springboot.blog.payload.LoginDto;
 import com.springboot.blog.security.JwtTokenProvider;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 
 import java.util.Arrays;
@@ -77,6 +82,71 @@ public class CategoryControllerIntegrationTest {
         TestRestTemplate restTemplate = new TestRestTemplate();
         ResponseEntity<CategoryDto> categoryDtoResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/api/v1/categories/" + categoryId, CategoryDto.class);
         assertEquals(404, categoryDtoResponseEntity.getStatusCode().value());
+    }
+
+    // Fernando (no va)
+    @Test
+    void addCategoriaWithStatusCode201_Created(){
+        LoginDto loginDto = new LoginDto("amatushevich4@nifty.com", "zE5#8$x7\"mk>");
+        String userToken2 = jwtProvider.generateToken(
+                new UsernamePasswordAuthenticationToken(loginDto.getUsernameOrEmail(), loginDto.getPassword()));
+
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(userToken2);
+
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setId(6L);
+        categoryDto.setName("Category");
+        categoryDto.setDescription("Description");
+
+        String path = "http://localhost:" + port + "/api/v1/categories";
+
+        HttpEntity<CategoryDto> requestEntity = new HttpEntity<>(categoryDto, header);
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        testRestTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+
+        ResponseEntity<CategoryDto> expectedResponse = testRestTemplate.exchange(
+                path, HttpMethod.POST, requestEntity, CategoryDto.class);
+
+        assertEquals(HttpStatus.CREATED, expectedResponse.getStatusCode());
+    }
+
+    //Fernando (no va tampoco)
+    @Test
+    void addCategoriaWithStatusCode400_BadRequest(){
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(adminToken);
+
+        HttpEntity<CategoryDto> requestEntity = new HttpEntity<>(dto, header);
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        testRestTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+
+        ResponseEntity<CategoryDto> expectedResponse = testRestTemplate.exchange(
+                "http://localhost:" +port+"/api/v1/categories", HttpMethod.POST, requestEntity, CategoryDto.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST, expectedResponse.getStatusCode());
+
+    }
+
+    // Fernando
+    @Test
+    void addCategoriaWithStatusCode401_Unauthorized(){
+
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(userToken);
+
+        HttpEntity<CategoryDto> requestEntity = new HttpEntity<>(dto, header);
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        testRestTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+
+        dto.setId(96L);
+        dto.setName("New Category");
+
+        ResponseEntity<CategoryDto> expectedResponse = testRestTemplate.exchange(
+                "http://localhost:" +port+"/api/v1/categories", HttpMethod.POST, requestEntity, CategoryDto.class);
+
+        assertEquals(HttpStatus.UNAUTHORIZED, expectedResponse.getStatusCode());
+
     }
 
     @Test
