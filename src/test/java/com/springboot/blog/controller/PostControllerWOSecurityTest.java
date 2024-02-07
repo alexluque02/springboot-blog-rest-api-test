@@ -108,13 +108,7 @@ class PostControllerWOSecurityTest {
                 .andExpect(status().isNotFound());
     }
 
-    @Test
-    void updatePost() {
-    }
 
-    @Test
-    void deletePost() {
-    }
 
     @Test
     void getPostsByCategory_Response200() throws Exception {
