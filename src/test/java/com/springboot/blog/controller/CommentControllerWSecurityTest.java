@@ -124,6 +124,7 @@ class CommentControllerWSecurityTest {
         return list;
     }
 
+    // Fernando
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void getCommentByIdWithStatusCode200_OK() throws Exception {
@@ -141,6 +142,7 @@ class CommentControllerWSecurityTest {
 
     }
 
+    // Fernando
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void getCommentByIdWithValidCommentAndEmptyPostWithStatusCode404NotFound() throws Exception {
@@ -156,6 +158,7 @@ class CommentControllerWSecurityTest {
                 .andExpect(status().isNotFound());
     }
 
+    // Fernando
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void getCommentByIdWithAnInvalidCommentIdWithStatusCode404NotFound() throws Exception {

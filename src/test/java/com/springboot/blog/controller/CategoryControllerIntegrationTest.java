@@ -49,9 +49,7 @@ public class CategoryControllerIntegrationTest {
     @BeforeEach
     @Sql("classpath:delete-data.sql")
     public void setup() {
-
-
-
+        
         Collection<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
         Authentication auth = new UsernamePasswordAuthenticationToken("krobert151","tiburonMolon123",authorities);
         adminToken = jwtProvider.generateToken(auth);
@@ -167,6 +165,7 @@ public class CategoryControllerIntegrationTest {
 
     }
 
+    // Fernando
     @Test
     void deleteCategoryWithStatusCode200_OK(){
         header.setContentType(MediaType.APPLICATION_JSON);
@@ -183,6 +182,7 @@ public class CategoryControllerIntegrationTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
+    // Fernando
     @Test
     void deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound(){
         header.setContentType(MediaType.APPLICATION_JSON);
