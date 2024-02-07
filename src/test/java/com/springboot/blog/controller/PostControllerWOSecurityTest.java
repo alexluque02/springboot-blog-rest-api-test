@@ -84,8 +84,6 @@ class PostControllerWOSecurityTest {
 
     }
 
-    //Fernando
-
     @Test
     void getAllPosts_NoResults() throws Exception {
         int pageNo = 0;
@@ -108,6 +106,7 @@ class PostControllerWOSecurityTest {
 
     }
 
+    //Fernando
     @Test
     void getPostByIdWithStatusCode200_OK() throws Exception{
         ModelMapper modelMapper = new ModelMapper();
@@ -124,9 +123,8 @@ class PostControllerWOSecurityTest {
     }
 
     //Fernando
-
     @Test
-    void getPostByIdWithIdNullOrNotExistsThrowException() throws Exception {
+    void getPostByIdWithIdNullOrNotExistsThrowExceptionWithStatusCode_404NotFound() throws Exception {
         long postId = 2L;
 
         Mockito.when(postService.getPostById(postId)).thenThrow(ResourceNotFoundException.class);

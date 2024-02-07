@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80fec2b0-20e1-42ee-adc2-ba8c7e5cc474" name="Changes" comment="Cambios locos de Luismi">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerWSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerWSecurityTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/springboot/blog/controller/CommentControllerWSecurityTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/springboot/blog/controller/CommentControllerWSecurityTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerWSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerWSecurityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWOSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWOSecurityTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,29 +53,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.CategoryControllerIntegrationTest.deleteCategoryWithStatusCode200_OK.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CategoryControllerWSecurityTest.addCategoryWithResponse201Created.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CategoryControllerWSecurityTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentControllerWSecurityTest.getCommentByIdWithAnInvalidCommentIdWithStatusCode404NotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentControllerWSecurityTest.getCommentByIdWithStatusCode200_OK.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentControllerWSecurityTest.getCommentByIdWithValidCommentAndEmptyPostWithStatusCode404NotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentControllerWSecurityTest.getCommentByIdWithValidPostAndEmptyCommentWithStatusCode404NotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentServiceTest.getCommentByIdWithAValidCommentIdButInvalidPostIdThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentServiceTest.getCommentByIdWithAValidPostIdButInvalidCommentIdThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentServiceTest.getCommentByIdWithAnInvalidCommentIdThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentServiceTest.getCommentByIdWithEmptyContentThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommentServiceTest.getCommentByIdWithSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.springboot-blog-rest-api [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;deleteCategoriaControllerAndService&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/alexl/Desktop/springboot-blog-rest-api-test&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.CategoryControllerIntegrationTest.deleteCategoryWithStatusCode200_OK.executor": "Run",
+    "JUnit.CategoryControllerWSecurityTest.addCategoryWithResponse201Created.executor": "Run",
+    "JUnit.CategoryControllerWSecurityTest.executor": "Run",
+    "JUnit.CommentControllerWSecurityTest.getCommentByIdWithAnInvalidCommentIdWithStatusCode404NotFound.executor": "Run",
+    "JUnit.CommentControllerWSecurityTest.getCommentByIdWithStatusCode200_OK.executor": "Run",
+    "JUnit.CommentControllerWSecurityTest.getCommentByIdWithValidCommentAndEmptyPostWithStatusCode404NotFound.executor": "Run",
+    "JUnit.CommentControllerWSecurityTest.getCommentByIdWithValidPostAndEmptyCommentWithStatusCode404NotFound.executor": "Run",
+    "JUnit.CommentServiceTest.getCommentByIdWithAValidCommentIdButInvalidPostIdThrowException.executor": "Run",
+    "JUnit.CommentServiceTest.getCommentByIdWithAValidPostIdButInvalidCommentIdThrowException.executor": "Run",
+    "JUnit.CommentServiceTest.getCommentByIdWithAnInvalidCommentIdThrowException.executor": "Run",
+    "JUnit.CommentServiceTest.getCommentByIdWithEmptyContentThrowException.executor": "Run",
+    "JUnit.CommentServiceTest.getCommentByIdWithSuccess.executor": "Run",
+    "Maven.springboot-blog-rest-api [clean,install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "addCategoria",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/alexl/Desktop/springboot-blog-rest-api-test"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn compile" />
@@ -83,7 +83,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CategoryControllerWSecurityTest.addCategoryWithResponse201Created">
+  <component name="RunManager" selected="JUnit.CategoryControllerWSecurityTest">
     <configuration name="CategoryControllerIntegrationTest.deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
@@ -164,8 +164,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CategoryControllerWSecurityTest.addCategoryWithResponse201Created" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest" />
+        <item itemvalue="JUnit.CategoryControllerWSecurityTest.addCategoryWithResponse201Created" />
         <item itemvalue="JUnit.CategoryControllerIntegrationTest.deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound" />
         <item itemvalue="JUnit.CategoryControllerIntegrationTest.deleteCategoryWithStatusCode200_OK" />
         <item itemvalue="JUnit.PostControllerWOSecurityTest" />
