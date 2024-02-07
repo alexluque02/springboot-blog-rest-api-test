@@ -64,6 +64,28 @@ public class CommentControllerIntegrationTest {
     }
 
     @Test
+    void createComment_thenReturnCreated(){
+        long postId = 1L;
+        long commentId = 1L;
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(1L);
+        commentDto.setName("Paco");
+        commentDto.setEmail("paco@gmail.com");
+        commentDto.setBody("Lorem ipsum dolor sit amet");
+
+        String path = "http://localhost:" + port + "/api/v1/posts/" + postId + "/comments";
+
+        ResponseEntity<CommentDto> responseEntity = testRestTemplate.exchange(
+                path, HttpMethod.POST, new HttpEntity<>(commentDto, headers), CommentDto.class
+        );
+
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertNotNull(responseEntity.getBody());
+        assertEquals("Paco", responseEntity.getBody().getName());
+        assertEquals(commentId, responseEntity.getBody().getId());
+    }
+
+    @Test
     void updateComment_thenReturnOk(){
         long postId = 1;
         long commentId = 2;
