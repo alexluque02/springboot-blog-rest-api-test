@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80fec2b0-20e1-42ee-adc2-ba8c7e5cc474" name="Changes" comment="Cambios locos de Luismi">
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWSecurityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWOSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWOSecurityTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +125,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostControllerWSecurityTest.deletePostById_thenReturnHttp401" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
         <pattern>
@@ -132,8 +134,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.PostControllerIntegrationTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.PostControllerWSecurityTest" />
+      <option name="METHOD_NAME" value="deletePostById_thenReturnHttp401" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -158,6 +161,8 @@
         <item itemvalue="JUnit.CommentControllerIntegrationTest.createComment_thenReturnCreated" />
         <item itemvalue="JUnit.CommentControllerIntegrationTest.createComment_thenReturnOk" />
         <item itemvalue="JUnit.PostServiceTest" />
+        <item itemvalue="JUnit.PostControllerWSecurityTest.deletePostById_thenReturnHttp401" />
+        <item itemvalue="JUnit.PostControllerWSecurityTest" />
         <item itemvalue="JUnit.CommentControllerIntegrationTest" />
         <item itemvalue="JUnit.PostControllerIntegrationTest" />
       </list>
