@@ -6,17 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class
-
-
-
-
-
-
-
-
-
-SpringbootBlogRestApiApplication {
+public class SpringbootBlogRestApiApplication {
 
 	@Bean
 	public ModelMapper modelMapper(){

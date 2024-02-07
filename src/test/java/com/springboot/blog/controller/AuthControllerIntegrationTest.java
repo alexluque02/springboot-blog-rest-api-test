@@ -44,6 +44,7 @@ public class AuthControllerIntegrationTest {
     public void setup() {
     }
 
+    //Luque
     @Test
     @Sql("classpath:insert-data.sql")
     public void whenLoginRegisteredUser_thenReturnOk() throws Exception {
@@ -57,6 +58,7 @@ public class AuthControllerIntegrationTest {
         //comprobar algo mas con json path o con objectMapper
     }
 
+    //Luque
     @Test
     public void whenLoginWODto_thenReturn400() throws Exception {
 
@@ -66,7 +68,7 @@ public class AuthControllerIntegrationTest {
         assertEquals(400, response.getStatusCode().value());
 
     }
-
+    //Luque
     @Test
     public void whenLoginUnregisteredUser_thenReturn500() throws Exception {
 

@@ -172,9 +172,10 @@ class CommentControllerWSecurityTest {
                 .andExpect(status().isNotFound());
     }
 
+    //Luque
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
-    void updateComment_Succesful() throws Exception {
+    void updateComment_Successful() throws Exception {
         Long postId = 1L;
         long commentId = 1L;
         CommentDto updatedComment = new CommentDto();
@@ -191,6 +192,7 @@ class CommentControllerWSecurityTest {
                 .andExpect(jsonPath("$.name", is(updatedComment.getName())));
     }
 
+    //Luque
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void updateComment_PostIdOrCommentIdNotFound() throws Exception {

@@ -1,11 +1,15 @@
 package com.springboot.blog.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.blog.entity.Category;
 import com.springboot.blog.exception.ResourceNotFoundException;
+import com.springboot.blog.payload.PostDto;
 import com.springboot.blog.service.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,8 +19,9 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.*;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -40,7 +45,28 @@ public class PostControllerWSecurityTest {
 
 
     @Test
-    void updatePost() {
+    @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
+    void updatePost() throws Exception {
+        long categoryId = 1L;
+        long postId = 1L;
+        Category category = new Category();
+        category.setId(categoryId);
+        category.setName("categoria");
+        category.setDescription("Lorem ipsum dolor sit amet");
+        PostDto postDto = new PostDto();
+        postDto.setId(postId);
+        postDto.setTitle("Publicacion trucha");
+        postDto.setDescription("Descripcion trucha");
+        postDto.setContent("Contenido de calidad");
+        postDto.setCategoryId(category.getId());
+
+        Mockito.when(postService.updatePost(postDto, categoryId)).thenReturn(postDto);
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/posts/{id}", postId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(postDto)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title", is(postDto.getTitle())));
+
     }
 
 
