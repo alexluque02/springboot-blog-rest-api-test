@@ -225,8 +225,6 @@ public class CommentControllerIntegrationTest {
         long postId = 1;
         long commentId = 1;
 
-
-
         String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/"+commentId;
 
         ResponseEntity<String> response = testRestTemplate.exchange(
