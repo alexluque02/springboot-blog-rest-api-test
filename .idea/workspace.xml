@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="80fec2b0-20e1-42ee-adc2-ba8c7e5cc474" name="Changes" comment="Cambios locos de Luismi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerWSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerWSecurityTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/springboot/blog/controller/CommentControllerWSecurityTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/springboot/blog/controller/CommentControllerWSecurityTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,52 +75,7 @@
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CategoryControllerWSecurityTest.updateCategory">
-    <configuration name="CategoryControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-blog-rest-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.springboot.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerIntegrationTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CategoryControllerWOSecurityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-blog-rest-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.springboot.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerWOSecurityTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CategoryControllerWSecurity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-blog-rest-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.springboot.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerWSecurity" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PostServiceTest">
     <configuration name="CategoryControllerWSecurityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
@@ -154,13 +107,58 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CommentControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-blog-rest-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springboot.blog.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CommentControllerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-blog-rest-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springboot.blog.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.PostControllerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-blog-rest-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springboot.blog.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.springboot.blog.service" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.service.PostServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PostServiceTest" />
+        <item itemvalue="JUnit.CommentControllerIntegrationTest" />
+        <item itemvalue="JUnit.PostControllerIntegrationTest" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest.updateCategory" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest" />
-        <item itemvalue="JUnit.CategoryControllerWSecurity" />
-        <item itemvalue="JUnit.CategoryControllerWOSecurityTest" />
-        <item itemvalue="JUnit.CategoryControllerIntegrationTest" />
       </list>
     </recent_temporary>
   </component>
@@ -202,11 +200,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/com/springboot/blog/service/AuthServiceTest.java</url>
           <line>25</line>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerIntegrationTest.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
