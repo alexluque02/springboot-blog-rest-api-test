@@ -67,7 +67,7 @@ class CategoryControllerWOSecurityTest {
                 .andExpect(status().isOk());
     }
 
-
+    //Luque
     @Test
     void getCategories() throws Exception {
         CategoryDto categoryDto = new CategoryDto(1L, "Ropa", "Esto es una buena categoria");

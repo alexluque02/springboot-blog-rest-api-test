@@ -51,6 +51,7 @@ class PostControllerWOSecurityTest {
     void createPost() {
     }
 
+    //Luque
     @Test
     void getAllPosts() throws Exception {
         int pageNo = 0;
@@ -109,7 +110,7 @@ class PostControllerWOSecurityTest {
     }
 
 
-
+    //Luque
     @Test
     void getPostsByCategory_Response200() throws Exception {
         Category category = new Category();
@@ -148,6 +149,7 @@ class PostControllerWOSecurityTest {
                 .andExpect(jsonPath("$[0].id", is(1)));
     }
 
+    //Luque
     @Test
     void getPostsByCategory_CategoryNotFound() throws Exception {
         Post post1 = new Post();
