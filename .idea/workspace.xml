@@ -7,8 +7,7 @@
     <list default="true" id="80fec2b0-20e1-42ee-adc2-ba8c7e5cc474" name="Changes" comment="Cambios locos de Luismi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CategoryControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerWSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/CommentControllerWSecurityTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWOSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/blog/controller/PostControllerWOSecurityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/springboot/blog/controller/CommentControllerWSecurityTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/springboot/blog/controller/CommentControllerWSecurityTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +54,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.CategoryControllerIntegrationTest.addCategoriaWithStatusCode201_Created.executor": "Run",
     "JUnit.CategoryControllerIntegrationTest.deleteCategoryWithStatusCode200_OK.executor": "Run",
     "JUnit.CategoryControllerWSecurityTest.addCategoryWithResponse201Created.executor": "Run",
     "JUnit.CategoryControllerWSecurityTest.executor": "Run",
@@ -71,7 +71,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "addCategoria",
+    "git-widget-placeholder": "addCategoryIntegrationTest",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/alexl/Desktop/springboot-blog-rest-api-test"
   }
@@ -83,7 +83,39 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CategoryControllerWSecurityTest">
+  <component name="RunManager" selected="JUnit.CategoryControllerIntegrationTest.addCategoriaWithStatusCode400_BadRequest">
+    <configuration name="CategoryControllerIntegrationTest.addCategoriaWithStatusCode201_Created" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-blog-rest-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springboot.blog.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="addCategoriaWithStatusCode201_Created" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoryControllerIntegrationTest.addCategoriaWithStatusCode400_BadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-blog-rest-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springboot.blog.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="addCategoriaWithStatusCode400_BadRequest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CategoryControllerIntegrationTest.deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="springboot-blog-rest-api" />
       <extension name="coverage">
@@ -95,22 +127,6 @@
       <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
       <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerIntegrationTest" />
       <option name="METHOD_NAME" value="deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CategoryControllerIntegrationTest.deleteCategoryWithStatusCode200_OK" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-blog-rest-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.springboot.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.CategoryControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="deleteCategoryWithStatusCode200_OK" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,28 +163,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerWOSecurityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="springboot-blog-rest-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.springboot.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.springboot.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.springboot.blog.controller.PostControllerWOSecurityTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CategoryControllerIntegrationTest.addCategoriaWithStatusCode400_BadRequest" />
+        <item itemvalue="JUnit.CategoryControllerIntegrationTest.addCategoriaWithStatusCode201_Created" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest" />
         <item itemvalue="JUnit.CategoryControllerWSecurityTest.addCategoryWithResponse201Created" />
         <item itemvalue="JUnit.CategoryControllerIntegrationTest.deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound" />
-        <item itemvalue="JUnit.CategoryControllerIntegrationTest.deleteCategoryWithStatusCode200_OK" />
-        <item itemvalue="JUnit.PostControllerWOSecurityTest" />
       </list>
     </recent_temporary>
   </component>

@@ -92,10 +92,11 @@ public class CategoryControllerIntegrationTest {
         header.setContentType(MediaType.APPLICATION_JSON);
         header.setBearerAuth(userToken2);
 
+        Category category = new Category();
+        category.setName("cat1");
+
         CategoryDto categoryDto = new CategoryDto();
-        categoryDto.setId(6L);
-        categoryDto.setName("Category");
-        categoryDto.setDescription("Description");
+        categoryDto.setName(category.getName());
 
         String path = "http://localhost:" + port + "/api/v1/categories";
 
