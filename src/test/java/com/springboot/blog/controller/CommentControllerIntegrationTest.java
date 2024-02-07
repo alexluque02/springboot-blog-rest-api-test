@@ -63,6 +63,7 @@ public class CommentControllerIntegrationTest {
         headers.add("Authorization","Bearer "+ userToken);
     }
 
+    //Fernando
     @Test
     void getCommentByIdWith200_OKResponse(){
         long commentId = 1L;
@@ -80,6 +81,7 @@ public class CommentControllerIntegrationTest {
 
     }
 
+    //Fernando
     @Test
     void getCommentByIdWithNonExistsCommentId404_NotFoundResponse(){
         long commentId = 234L;
@@ -93,6 +95,29 @@ public class CommentControllerIntegrationTest {
         ResponseEntity<CommentDto> expectedResponse = testRestTemplate.getForEntity(path, CommentDto.class);
     }
 
+    @Test
+    void createComment_thenReturnCreated(){
+        long postId = 1L;
+        long commentId = 1L;
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(1L);
+        commentDto.setName("Paco");
+        commentDto.setEmail("paco@gmail.com");
+        commentDto.setBody("Lorem ipsum dolor sit amet");
+
+        String path = "http://localhost:" + port + "/api/v1/posts/" + postId + "/comments";
+
+        ResponseEntity<CommentDto> responseEntity = testRestTemplate.exchange(
+                path, HttpMethod.POST, new HttpEntity<>(commentDto, headers), CommentDto.class
+        );
+
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertNotNull(responseEntity.getBody());
+        assertEquals("Paco", responseEntity.getBody().getName());
+        assertEquals(commentId, responseEntity.getBody().getId());
+    }
+
+    //Luque
     @Test
     void updateComment_thenReturnOk(){
         long postId = 1;
@@ -113,6 +138,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(commentId ,response.getBody().getId());
     }
 
+    //Luque
     @Test
     void updateComment_thenReturnPostIdNotFound(){
         long postId = 71;
@@ -130,6 +156,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_thenReturnCategoryIdNotFound(){
         long postId = 71;
@@ -147,6 +174,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_PostsIdDontMatch(){
         long postId = 1;
@@ -164,6 +192,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_DtoIsWrong(){
         long postId = 1;
@@ -177,6 +206,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
+    //Luque
     @Test
     void updateComment_NoDto(){
         long postId = 1;

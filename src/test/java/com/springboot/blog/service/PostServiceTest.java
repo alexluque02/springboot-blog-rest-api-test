@@ -19,12 +19,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PostServiceTest {
@@ -45,6 +43,7 @@ class PostServiceTest {
     void createPost() {
     }
 
+    //Luque
     @Test
     void getAllPosts_OrderAsc() {
         int pageNo = 0;
@@ -66,7 +65,7 @@ class PostServiceTest {
         List<Post> postList = List.of(post2, post1);
         Page<Post> postPage = new PageImpl<>(postList);
 
-        Mockito.when(postRepository.findAll(Mockito.eq(pageable))).thenReturn(postPage);
+        when(postRepository.findAll(Mockito.eq(pageable))).thenReturn(postPage);
 
         PostDto postDto = new PostDto();
         postDto.setId(post2.getId());
@@ -77,7 +76,7 @@ class PostServiceTest {
         postDto2.setTitle(post1.getTitle());
 
         List<PostDto> content= List.of(postDto, postDto2);
-        Mockito.when(modelMapper.map(Mockito.any(), Mockito.eq(PostDto.class)))
+        when(modelMapper.map(Mockito.any(), Mockito.eq(PostDto.class)))
                 .thenReturn(content.get(0))
                 .thenReturn(content.get(1));
 
@@ -88,6 +87,7 @@ class PostServiceTest {
         assertEquals(2L, result.getContent().get(0).getId());
     }
 
+    //Luque
     @Test
     void getAllPosts_OrderDesc() {
         int pageNo = 0;
@@ -109,7 +109,7 @@ class PostServiceTest {
         List<Post> postList = List.of(post1, post2);
         Page<Post> postPage = new PageImpl<>(postList);
 
-        Mockito.when(postRepository.findAll(Mockito.eq(pageable))).thenReturn(postPage);
+        when(postRepository.findAll(Mockito.eq(pageable))).thenReturn(postPage);
 
         PostDto postDto = new PostDto();
         postDto.setId(post1.getId());
@@ -120,7 +120,7 @@ class PostServiceTest {
         postDto2.setTitle(post2.getTitle());
 
         List<PostDto> content= List.of(postDto, postDto2);
-        Mockito.when(modelMapper.map(Mockito.any(), Mockito.eq(PostDto.class)))
+        when(modelMapper.map(Mockito.any(), Mockito.eq(PostDto.class)))
                 .thenReturn(content.get(0))
                 .thenReturn(content.get(1));
 
@@ -143,8 +143,8 @@ class PostServiceTest {
         postDto.setId(post.getId());
         postDto.setTitle(post.getTitle());
 
-        Mockito.when(postRepository.findById(post.getId())).thenReturn(Optional.of(post));
-        Mockito.when(modelMapper.map(post, PostDto.class)).thenReturn(postDto);
+        when(postRepository.findById(post.getId())).thenReturn(Optional.of(post));
+        when(modelMapper.map(post, PostDto.class)).thenReturn(postDto);
 
         PostDto expectedResult = postService.getPostById(post.getId());
 
@@ -167,27 +167,52 @@ class PostServiceTest {
 
     @Test
     void deletePostById() {
+
+        Post post1 = new Post(1L,"Post1","desc1","content1",new HashSet<>(),new Category());
+
+        when(postRepository.findById(post1.getId())).thenReturn(Optional.of(post1));
+
+        postService.deletePostById(post1.getId());
+
+        verify(postRepository, times(1)).delete(post1);
+
+
+
     }
 
     @Test
+    void deletePostById_ThrowsResourcesNotFound() {
+
+        Post post1 = new Post(1L,"Post1","desc1","content1",new HashSet<>(),new Category());
+
+        when(postRepository.findById(post1.getId())).thenThrow(new ResourceNotFoundException("Post", "id", post1.getId()));
+
+        assertThrows(ResourceNotFoundException.class, ()->postService.deletePostById(post1.getId()));
+
+    }
+
+    //Luque
+    @Test
     void getPostsByCategory_CategoryNotFound() {
         Long categoryId = 1L;
-        Mockito.when(categoryRepository.findById(categoryId)).thenReturn(Optional.empty());
+        when(categoryRepository.findById(categoryId)).thenReturn(Optional.empty());
         assertThrows(ResourceNotFoundException.class, () -> postService.getPostsByCategory(categoryId));
     }
 
+    //Luque
     @Test
     void getPostsByCategory_ReturnsEmptyPostsList(){
         Category category = new Category();
         category.setId(1L);
 
-        Mockito.when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
-        Mockito.when(postRepository.findByCategoryId(category.getId())).thenReturn(Collections.emptyList());
+        when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
+        when(postRepository.findByCategoryId(category.getId())).thenReturn(Collections.emptyList());
 
         List<PostDto> result = postService.getPostsByCategory(category.getId());
         assertTrue(result.isEmpty());
     }
 
+    //Luque
     @Test
     void getPostsByCategory_ReturnsPostsList(){
         Category category = new Category();
@@ -203,8 +228,8 @@ class PostServiceTest {
 
         List <Post> posts = List.of(post1, post2);
 
-        Mockito.when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
-        Mockito.when(postRepository.findByCategoryId(category.getId())).thenReturn(posts);
+        when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
+        when(postRepository.findByCategoryId(category.getId())).thenReturn(posts);
 
         PostDto postDto1 = new PostDto();
         postDto1.setId(post1.getId());
@@ -215,7 +240,7 @@ class PostServiceTest {
         postDto2.setCategoryId(post2.getCategory().getId());
 
         List<PostDto> postDtoList = List.of(postDto1, postDto2);
-        Mockito.when(modelMapper.map(Mockito.any(Post.class), Mockito.eq(PostDto.class)))
+        when(modelMapper.map(Mockito.any(Post.class), Mockito.eq(PostDto.class)))
                 .thenReturn(postDtoList.get(0))
                 .thenReturn(postDtoList.get(1));
 

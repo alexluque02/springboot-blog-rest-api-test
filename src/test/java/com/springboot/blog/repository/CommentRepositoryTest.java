@@ -14,6 +14,7 @@ class CommentRepositoryTest extends ConfigTestClass{
     @Autowired
     CommentRepository commentRepository;
 
+    //Luque
     @Test
     void findByPostId_CommentsExist() {
         List<Comment> comments = commentRepository.findByPostId(9);
@@ -22,12 +23,14 @@ class CommentRepositoryTest extends ConfigTestClass{
         assertEquals("In blandit ultrices enim.", comments.get(0).getBody());
     }
 
+    //Luque
     @Test
     void findByPostId_NoComments(){
         List<Comment> comments = commentRepository.findByPostId(11);
         assertTrue(comments.isEmpty());
     }
 
+    //Luque
     @Test
     void findByPostId_PostIdDontExist(){
         List<Comment> comments = commentRepository.findByPostId(99);

@@ -51,6 +51,7 @@ class PostControllerWOSecurityTest {
     void createPost() {
     }
 
+    //Luque
     @Test
     void getAllPosts() throws Exception {
         int pageNo = 0;
@@ -83,6 +84,8 @@ class PostControllerWOSecurityTest {
 
     }
 
+    //Fernando
+
     @Test
     void getPostByIdWithStatusCode200_OK() throws Exception{
         ModelMapper modelMapper = new ModelMapper();
@@ -98,6 +101,8 @@ class PostControllerWOSecurityTest {
                 .andExpect(status().isOk());
     }
 
+    //Fernando
+
     @Test
     void getPostByIdWithIdNullOrNotExistsThrowException() throws Exception {
         long postId = 2L;
@@ -108,14 +113,8 @@ class PostControllerWOSecurityTest {
                 .andExpect(status().isNotFound());
     }
 
-    @Test
-    void updatePost() {
-    }
 
-    @Test
-    void deletePost() {
-    }
-
+    //Luque
     @Test
     void getPostsByCategory_Response200() throws Exception {
         Category category = new Category();
@@ -154,6 +153,7 @@ class PostControllerWOSecurityTest {
                 .andExpect(jsonPath("$[0].id", is(1)));
     }
 
+    //Luque
     @Test
     void getPostsByCategory_CategoryNotFound() throws Exception {
         Post post1 = new Post();
