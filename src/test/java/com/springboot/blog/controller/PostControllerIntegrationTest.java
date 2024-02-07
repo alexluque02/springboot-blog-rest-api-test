@@ -23,6 +23,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -69,6 +70,29 @@ public class PostControllerIntegrationTest {
         ResponseEntity<PostResponse> response = testRestTemplate.getForEntity("http://localhost:"+port+"/api/posts", PostResponse.class);
         assertEquals(200, response.getStatusCode().value());
         assertEquals(0, Objects.requireNonNull(response.getBody()).getTotalElements());
+    }
+
+    @Test
+    public void getPostByCategory_ReturnsOk(){
+        long categoryId = 3;
+        ResponseEntity<PostDto[]> response = testRestTemplate.getForEntity("http://localhost:"+port+"/api/posts/category/"+categoryId, PostDto[].class);
+        assertEquals(200, response.getStatusCode().value());
+        assertEquals(4, Objects.requireNonNull(response.getBody()).length);
+    }
+
+    @Test
+    public void getPostByCategory_ReturnsNoPosts(){
+        long categoryId = 4;
+        ResponseEntity<PostDto[]> response = testRestTemplate.getForEntity("http://localhost:"+port+"/api/posts/category/"+categoryId, PostDto[].class);
+        assertEquals(200, response.getStatusCode().value());
+        assertEquals(0, Objects.requireNonNull(response.getBody()).length);
+    }
+
+    @Test
+    public void getPostByCategory_ReturnsCategoryNotFound(){
+        long categoryId = 7;
+        ResponseEntity<PostDto> response = testRestTemplate.getForEntity("http://localhost:"+port+"/api/posts/category/"+categoryId, PostDto.class);
+        assertEquals(404, response.getStatusCode().value());
     }
 
     @Test
