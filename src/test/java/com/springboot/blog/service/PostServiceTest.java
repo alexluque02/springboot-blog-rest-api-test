@@ -161,6 +161,29 @@ class PostServiceTest {
 
     @Test
     void updatePost() {
+        Category category = new Category();
+        category.setId(1L);
+        category.setName("categoria");
+        category.setDescription("Lorem ipsum dolor sit amet");
+        PostDto postDto = new PostDto();
+        postDto.setId(1L);
+        postDto.setTitle("Publicacion trucha");
+        postDto.setDescription("Descripcion trucha");
+        postDto.setContent("Contenido de calidad");
+        postDto.setCategoryId(category.getId());
+        Post post = new Post();
+        post.setId(postDto.getId());
+
+        when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
+        when(postRepository.findById(postDto.getId())).thenReturn(Optional.of(post));
+        when(postRepository.save(Mockito.any())).thenAnswer(invocation -> invocation.getArgument(0));
+        when(modelMapper.map(Mockito.any(), eq(PostDto.class))).thenReturn(postDto);
+
+        PostDto postDtoNuevo = postService.updatePost(postDto, category.getId());
+
+        assertEquals(postDto.getTitle(), postDtoNuevo.getTitle());
+        assertEquals(postDto.getContent(), postDtoNuevo.getContent());
+        assertEquals(postDto.getDescription(), postDtoNuevo.getDescription());
     }
 
     @Test
