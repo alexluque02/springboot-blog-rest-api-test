@@ -66,6 +66,14 @@ public class PostControllerIntegrationTest {
         assertEquals(0, Objects.requireNonNull(response.getBody()).getTotalElements());
     }
 
+
+    @Test
+    public void getPostByIdWith200_OKResponse(){
+        long postId = 1L;
+
+
+    }
+
     @Test
     public void deletePost_AdminRoleReturnsOk(){
         LoginDto loginDto = new LoginDto("amatushevich4@nifty.com", "zE5#8$x7\"mk>");

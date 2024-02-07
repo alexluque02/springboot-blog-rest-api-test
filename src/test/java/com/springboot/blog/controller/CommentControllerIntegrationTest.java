@@ -64,6 +64,36 @@ public class CommentControllerIntegrationTest {
     }
 
     @Test
+    void getCommentByIdWith200_OKResponse(){
+        long commentId = 1L;
+        long postId = 1L;
+
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(commentId);
+
+        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/"+commentId;
+
+        ResponseEntity<CommentDto> expectedResponse = testRestTemplate.getForEntity(path, CommentDto.class);
+
+        assertEquals(HttpStatus.OK, expectedResponse.getStatusCode());
+        assertEquals(commentDto.getId(), expectedResponse.getBody().getId());
+
+    }
+
+    @Test
+    void getCommentByIdWithNonExistsCommentId404_NotFoundResponse(){
+        long commentId = 234L;
+        long postId = 1L;
+
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(commentId);
+
+        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/"+commentId;
+
+        ResponseEntity<CommentDto> expectedResponse = testRestTemplate.getForEntity(path, CommentDto.class);
+    }
+
+    @Test
     void updateComment_thenReturnOk(){
         long postId = 1;
         long commentId = 2;
