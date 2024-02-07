@@ -44,6 +44,7 @@ public class PostControllerWSecurityTest {
     }
 
 
+    //Roberto Rebolledo Naharro
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void deletePostById_thenReturnHttp200() throws Exception {
@@ -59,6 +60,7 @@ public class PostControllerWSecurityTest {
     }
 
 
+    //Roberto Rebolledo Naharro
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void deletePostById_thenReturnHttp404() throws Exception {
@@ -72,6 +74,7 @@ public class PostControllerWSecurityTest {
                 .andExpect(status().isNotFound());
     }
 
+    //Roberto Rebolledo Naharro
     @Test
     @WithMockUser(username = "username",  roles = {"USER"})
     void deletePostById_thenReturnHttp401() throws Exception {

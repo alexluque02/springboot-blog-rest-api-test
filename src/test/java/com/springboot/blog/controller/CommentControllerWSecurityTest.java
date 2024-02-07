@@ -39,7 +39,9 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -80,6 +82,8 @@ class CommentControllerWSecurityTest {
                         .content(objectMapper.writeValueAsString(commentDto)))
                 .andExpect(status().isCreated());
     }
+
+    //Roberto Rebolledo Naharro
 
     @Test
     @WithMockUser(username = "username", roles = {"USER","ADMIN"})

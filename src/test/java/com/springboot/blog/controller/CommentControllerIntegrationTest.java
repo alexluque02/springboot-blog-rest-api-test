@@ -178,6 +178,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(0, response.getBody().getId());
     }
 
+    //Roberto Rebolledo Naharro
     @Test
     void deleteComment_Ok(){
         long postId = 1;
@@ -196,6 +197,7 @@ public class CommentControllerIntegrationTest {
 
     }
 
+    //Roberto Rebolledo Naharro
     @Test
     void deleteComment_NotFound(){
         long postId = 10000;
@@ -211,6 +213,7 @@ public class CommentControllerIntegrationTest {
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
+    //Roberto Rebolledo Naharro
     @Test
     void deleteComment_BadRequest(){
         long postId = 5;

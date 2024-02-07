@@ -79,6 +79,8 @@ class CommentServiceTest {
         verify(postRepository).findById(eq(1L));
     }
 
+    // Roberto Rebolledo Naharro
+
     @Test
     void getCommentsByPostId() {
 
@@ -222,6 +224,7 @@ class CommentServiceTest {
 
     }
 
+    // Roberto Rebolledo Naharro
     @Test
     void deleteComment_PostNotFound() {
 
@@ -234,6 +237,7 @@ class CommentServiceTest {
 
     }
 
+    // Roberto Rebolledo Naharro
     @Test
     void deleteComment_CommentNotFound() {
         Long commentId = 1L;
@@ -247,6 +251,7 @@ class CommentServiceTest {
 
     }
 
+    // Roberto Rebolledo Naharro
     @Test
     public void deleteComment_CommentDoesNotBelongToPost_ThrowException() {
 
@@ -266,6 +271,7 @@ class CommentServiceTest {
         verify(commentRepository, never()).delete(any(Comment.class));
     }
 
+    // Roberto Rebolledo Naharro
     @Test
     public void deleteComment_ValidComment_DeletesComment() {
 

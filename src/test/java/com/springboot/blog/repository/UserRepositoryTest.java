@@ -60,11 +60,20 @@ class UserRepositoryTest extends ConfigTestClass {
         assertFalse(user.isPresent());
     }
 
+    // Roberto Rebolledo Naharro
     @Test
     void findByUsername() {
         Optional<User> user = userRepository.findByUsername("tvenneur0");
         Assertions.assertNotNull(user);
         Assertions.assertEquals(user.get().getUsername(), "tvenneur0");
+
+    }
+
+    //Roberto Rebolledo Naharro
+    @Test
+    void findByUsername_NotFound(){
+        Optional<User> user = userRepository.findByUsername("Cristiano_Ronaldo");
+        assertFalse(user.isPresent());
 
     }
 

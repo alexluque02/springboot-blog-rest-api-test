@@ -1,27 +1,30 @@
 package com.springboot.blog.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.blog.payload.JWTAuthResponse;
 import com.springboot.blog.payload.LoginDto;
+import com.springboot.blog.payload.RegisterDto;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-
-
-import com.springboot.blog.payload.RegisterDto;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+
 
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("integration-test")
 public class AuthControllerIntegrationTest {
 
@@ -32,8 +35,12 @@ public class AuthControllerIntegrationTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    @Autowired
+    TestRestTemplate testRestTemplate;
+
     @BeforeEach
     @Sql("classpath:delete-data.sql")
+    @Sql("classpath:insert-data.sql")
     public void setup() {
     }
 
@@ -73,19 +80,41 @@ public class AuthControllerIntegrationTest {
     }
 
 
+    //Roberto Rebolledo Naharro - Service Error line 80
     @Test
     public void authRegister_thenReturnCreated(){
 
-        RegisterDto registerDto = new RegisterDto("Roberto","krobert151","robertorebolledo151@gmail.com","lagartoMolon34#");
+        RegisterDto registerDto = new RegisterDto("Roberto","krobert153","robertorebolledo153@gmail.com","password123");
         TestRestTemplate testRestTemplate = new TestRestTemplate();
         ResponseEntity<String> response = testRestTemplate.postForEntity("http://localhost:"+port+"/api/auth/register",registerDto, String.class);
 
-        System.out.println("Request Body: " + testRestTemplate.toString());
-        System.out.println("Response Body: " + response.getBody());
-
-        assertEquals(201,response.getStatusCode().value());
-
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
 
     }
+
+    //Roberto Rebolledo Naharro - Service Error line 80
+    @Test
+    public void authRegister_thenReturnBadRequest(){
+
+        RegisterDto registerDto = new RegisterDto("Roberto","krobert151","robertorebolledo151@gmail.com","password123");
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        ResponseEntity<String> response = testRestTemplate.postForEntity("http://localhost:"+port+"/api/auth/register",registerDto, String.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+
+    }
+
+    //Roberto Rebolledo Naharro
+    @Test
+    public void authRegister_thenReturnInternalServerError(){
+
+        RegisterDto registerDto = new RegisterDto();
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        ResponseEntity<String> response = testRestTemplate.postForEntity("http://localhost:"+port+"/api/auth/register",registerDto, String.class);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+
+    }
+
 
 }
