@@ -49,7 +49,7 @@ public class CategoryControllerWSecurityTest {
    public void setup() {
     }
     @Test
-    @WithMockUser(username = "username", roles = "{ADMIN}")
+    @WithMockUser(username = "username", roles = "ADMIN")
     void addCategoryWithResponse201Created() throws Exception {
         Long categoryId = 101L;
         String name = "Category 1";
