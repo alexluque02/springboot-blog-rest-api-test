@@ -53,7 +53,7 @@ class PostControllerWOSecurityTest {
 
     //Luque
     @Test
-    void getAllPosts() throws Exception {
+    void getAllPosts_WithResults() throws Exception {
         int pageNo = 0;
         int pageSize = 10;
         String sortBy = "title";
@@ -85,6 +85,29 @@ class PostControllerWOSecurityTest {
     }
 
     @Test
+    void getAllPosts_NoResults() throws Exception {
+        int pageNo = 0;
+        int pageSize = 10;
+        String sortBy = "title";
+        String sortDir = "ASC";
+
+        List<PostDto> postDto = List.of();
+        PostResponse postResponse = new PostResponse(postDto, 0 , 1, 2, 1, true);
+        Mockito.when(postService.getAllPosts(pageNo, pageSize, sortBy, sortDir)).thenReturn(postResponse);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/posts")
+                        .param("pageNo", String.valueOf(pageNo))
+                        .param("pageSize", String.valueOf(pageSize))
+                        .param("sortBy", sortBy)
+                        .param("sortDir", sortDir)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content", hasSize(0)));
+
+    }
+
+    //Fernando
+    @Test
     void getPostByIdWithStatusCode200_OK() throws Exception{
         ModelMapper modelMapper = new ModelMapper();
         long postId = 1L;
@@ -99,8 +122,9 @@ class PostControllerWOSecurityTest {
                 .andExpect(status().isOk());
     }
 
+    //Fernando
     @Test
-    void getPostByIdWithIdNullOrNotExistsThrowException() throws Exception {
+    void getPostByIdWithIdNullOrNotExistsThrowExceptionWithStatusCode_404NotFound() throws Exception {
         long postId = 2L;
 
         Mockito.when(postService.getPostById(postId)).thenThrow(ResourceNotFoundException.class);

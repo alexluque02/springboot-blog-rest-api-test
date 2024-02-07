@@ -54,9 +54,7 @@ public class CategoryControllerIntegrationTest {
     @BeforeEach
     @Sql("classpath:delete-data.sql")
     public void setup() {
-
-
-
+        
         Collection<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
         Authentication auth = new UsernamePasswordAuthenticationToken("krobert151","tiburonMolon123",authorities);
         adminToken = jwtProvider.generateToken(auth);
@@ -237,5 +235,38 @@ public class CategoryControllerIntegrationTest {
 
     }
 
+    // Fernando
+    @Test
+    void deleteCategoryWithStatusCode200_OK(){
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(adminToken);
+        HttpEntity<CategoryDto> objectRequest = new HttpEntity<>(null, header);
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        testRestTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 
+        long categoryId = 1L;
+
+        ResponseEntity<String> response = testRestTemplate.exchange(
+                "http://localhost:" + port + "/api/v1/categories/"+categoryId, HttpMethod.DELETE, objectRequest, String.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    // Fernando
+    @Test
+    void deleteCategoryWithNotFoundIdReturnStatusCode404_NotFound(){
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(adminToken);
+        HttpEntity<CategoryDto> objectRequest = new HttpEntity<>(null, header);
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        testRestTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+
+        long categoryId = 123L;
+
+        ResponseEntity<String> response = testRestTemplate.exchange(
+                "http://localhost:" + port + "/api/v1/categories/"+categoryId, HttpMethod.DELETE, objectRequest, String.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+    
 }

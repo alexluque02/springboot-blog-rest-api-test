@@ -17,8 +17,8 @@ class RoleRepositoryTest extends ConfigTestClass{
 
     @Test
     void findByName() {
-        Optional<Role> role = roleRepository.findByName("USER");
+        Optional<Role> role = roleRepository.findByName("ROLE_USER");
         Assertions.assertNotNull(role);
-        Assertions.assertEquals(role.get().getName(),"USER");
+        Assertions.assertEquals(role.get().getName(),"ROLE_USER");
     }
 }
