@@ -25,6 +25,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -61,6 +63,20 @@ public class CommentControllerIntegrationTest {
         headers=new LinkedMultiValueMap<>();
         headers.add("content-type","application/json");
         headers.add("Authorization","Bearer "+ userToken);
+    }
+
+
+    @Test
+    void getCommentByPostId_thenResturnOk(){
+        long postId = 1;
+
+        String path = "http://localhost:"+port+"/api/v1/posts/"+postId+"/comments/";
+
+        ResponseEntity<CommentDto[]> response = testRestTemplate.getForEntity(path,CommentDto[].class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+
+
+
     }
 
     @Test
