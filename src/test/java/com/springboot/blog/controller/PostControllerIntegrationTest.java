@@ -1,19 +1,21 @@
 package com.springboot.blog.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.blog.entity.Category;
+import com.springboot.blog.entity.Post;
 import com.springboot.blog.payload.CommentDto;
 import com.springboot.blog.payload.LoginDto;
+import com.springboot.blog.payload.PostDto;
 import com.springboot.blog.payload.PostResponse;
 import com.springboot.blog.security.JwtTokenProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.test.context.ActiveProfiles;
@@ -36,6 +38,9 @@ public class PostControllerIntegrationTest {
 
     @Autowired
     ObjectMapper objectMapper;
+
+    @Autowired
+    ModelMapper modelMapper;
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
@@ -110,4 +115,68 @@ public class PostControllerIntegrationTest {
         ResponseEntity<String> response = testRestTemplate.exchange("http://localhost:"+port+"/api/posts/"+21, HttpMethod.DELETE,new HttpEntity<>("Post entity deleted successfully.", headers), String.class);
         assertEquals(404, response.getStatusCode().value());
     }
+
+    @Test
+    void updatePost_AdminRoleReturnsOk(){
+        LoginDto loginDto = new LoginDto("amatushevich4@nifty.com", "zE5#8$x7\"mk>");
+        String userToken = jwtTokenProvider.generateToken
+                (new UsernamePasswordAuthenticationToken(loginDto.getUsernameOrEmail(), loginDto.getPassword()));
+        Category category = new Category();
+        category.setId(1L);
+        category.setName("categoria");
+        category.setDescription("Lorem ipsum dolor sit amet");
+        PostDto postDto = new PostDto();
+        postDto.setId(1L);
+        postDto.setTitle("Publicacion trucha");
+        postDto.setDescription("Descripcion trucha");
+        postDto.setContent("Contenido de calidad");
+        postDto.setCategoryId(category.getId());
+        Post post = new Post();
+        post = modelMapper.map(postDto, Post.class);
+        headers = new LinkedMultiValueMap<>();
+        headers.add("content-type", "application/json");
+        headers.add("Authorization", "Bearer " + userToken);
+
+        HttpHeaders auth = new HttpHeaders();
+        auth.setBearerAuth(userToken);
+        HttpEntity<PostDto> entity = new HttpEntity<>(postDto, auth);
+
+        ResponseEntity<PostDto> response = testRestTemplate.exchange
+                ("http://localhost:" + port + "/api/posts/"+1L,
+                        HttpMethod.PUT,
+                        new HttpEntity<>(postDto, headers), PostDto.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    void updatePost_AdminRoleReturnsNotFound(){
+        LoginDto loginDto = new LoginDto("amatushevich4@nifty.com", "zE5#8$x7\"mk>");
+        String userToken = jwtTokenProvider.generateToken
+                (new UsernamePasswordAuthenticationToken(loginDto.getUsernameOrEmail(), loginDto.getPassword()));
+        Category category = new Category();
+        category.setId(1L);
+        category.setName("categoria");
+        category.setDescription("Lorem ipsum dolor sit amet");
+        PostDto postDto = new PostDto();
+        postDto.setId(1L);
+        postDto.setTitle("Publicacion trucha");
+        postDto.setDescription("Descripcion trucha");
+        postDto.setContent("Contenido de calidad");
+        postDto.setCategoryId(category.getId());
+        Post post = new Post();
+        post = modelMapper.map(postDto, Post.class);
+        headers = new LinkedMultiValueMap<>();
+        headers.add("content-type", "application/json");
+        headers.add("Authorization", "Bearer " + userToken);
+
+        ResponseEntity<PostDto> response = testRestTemplate.exchange
+                ("http://localhost:" + port + "/api/posts/"+21L,
+                        HttpMethod.PUT,
+                        new HttpEntity<>(postDto, headers), PostDto.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+
 }
