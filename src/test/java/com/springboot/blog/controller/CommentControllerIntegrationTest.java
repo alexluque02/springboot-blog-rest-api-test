@@ -54,7 +54,7 @@ public class CommentControllerIntegrationTest {
     @BeforeEach
     public void setup() {
         testRestTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-        LoginDto loginDto = new LoginDto("tpetteford0@linkedin.com", "uN1~{O)+''}");
+        LoginDto loginDto = new LoginDto("tpetteford0@linkedin.com", "$2a$12$V2STGXRVuoOEqKtAtKZJ3ePwcVAb/GZ7y4NTKhrlZ1MJy6AWiLyXe");
         String userToken = jwtTokenProvider.generateToken(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
         System.out.println(userToken);

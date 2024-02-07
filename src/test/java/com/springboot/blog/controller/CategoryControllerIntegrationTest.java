@@ -21,6 +21,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -62,28 +63,20 @@ public class CategoryControllerIntegrationTest {
     }
 
     @Test
-    public void findCategoryById_thenReturnOk() throws Exception {
-
-        Long idCategory = 1L;
-
-        TestRestTemplate testRestTemplate = new TestRestTemplate();
-
-        ResponseEntity<CategoryDto> response = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/categories/" + idCategory, CategoryDto.class);
-        assertEquals(200,response.getStatusCode().value());
-        assertEquals("Teal",response.getBody().getName());
-
+    public void getCategory_thenReturnOk() throws Exception{
+        long categoryId = 1L;
+        TestRestTemplate restTemplate = new TestRestTemplate();
+        ResponseEntity<CategoryDto> categoryDtoResponseEntity = restTemplate.getForEntity("http://localhost:"+port+"/api/v1/categories/"+categoryId, CategoryDto.class);
+        assertEquals(200, categoryDtoResponseEntity.getStatusCode().value());
+        assertEquals("Teal", Objects.requireNonNull(categoryDtoResponseEntity.getBody()).getName());
     }
 
     @Test
-    public void findCategoryById_thenNotFound() throws Exception {
-
-        Long idCategory = 1000L;
-
-        TestRestTemplate testRestTemplate = new TestRestTemplate();
-
-        ResponseEntity<CategoryDto> response = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/categories/" + idCategory, CategoryDto.class);
-        assertEquals(404,response.getStatusCode().value());
-
+    public void getCategory_thenNotFound() throws Exception {
+        long categoryId = 7L;
+        TestRestTemplate restTemplate = new TestRestTemplate();
+        ResponseEntity<CategoryDto> categoryDtoResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/api/v1/categories/" + categoryId, CategoryDto.class);
+        assertEquals(404, categoryDtoResponseEntity.getStatusCode().value());
     }
 
     @Test

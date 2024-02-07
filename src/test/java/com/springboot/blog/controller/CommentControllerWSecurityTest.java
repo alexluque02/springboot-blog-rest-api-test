@@ -144,13 +144,13 @@ class CommentControllerWSecurityTest {
     @Test
     @WithMockUser(username = "username",  roles = {"USER","ADMIN"})
     void getCommentByIdWithValidCommentAndEmptyPostWithStatusCode404NotFound() throws Exception {
-        Long postId = null;
+        Long postId = 277L;
         Long commentId = 1L;
         CommentDto commentDto = new CommentDto();
         commentDto.setId(commentId);
         commentDto.setBody("Comment");
 
-        Mockito.when(commentService.getCommentById(postId, commentId)).thenReturn(commentDto);
+        Mockito.when(commentService.getCommentById(postId, commentId)).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/posts/{postId}/comments/{id}", postId, commentId))
                 .andExpect(status().isNotFound());
